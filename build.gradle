@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'war'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+}
+
+project.webAppDirName = 'WebContent'
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    compile 'com.google.guava:guava:23.0'
+    compile 'mysql:mysql-connector-java:8.0.22'
+    compile 'tomcat:naming-java:5.0.28'
+    compile 'tomcat:naming-factory:5.5.23'
+    compile 'tomcat:naming-resources:5.5.23'
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+    
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
+
+war {
+    archiveName = 'ItemManagement.war'
+}
+
+task deploy(type: Copy) {
+    from 'build/libs/ItemManagement.war'
+    into '/opt/apache-tomcat-9.0.40/webapps'
+}
