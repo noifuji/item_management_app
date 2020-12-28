@@ -1,21 +1,25 @@
-package bean;
+package ao.app.productmaster.bean;
 
+/**
+ * ItemCategoryテーブルから取得したデータを格納
+ */
 public class ItemCategory implements java.io.Serializable {
 
-	private char item_category_code;
-	private String item_category_name;
+//データベースの列に合わせて、商品分類コード・商品分類名を保存するフィールドを宣言する
+	private String itemCategoryCode;
+	private String itemCategoryName;
 
-	public char getItem_category_code() {
-		return item_category_code;
+//各フィールドの値を取得するためのゲッタとセッタを設定する
+	public String getItemCategoryCode() {
+		return itemCategoryCode;
 	}
-	public void setItem_category_code(char item_category_code) {
-		this.item_category_code = item_category_code;
+	public void setItemCategoryCode(String itemCategoryCode) {
+		this.itemCategoryCode = itemCategoryCode;
 	}
-	public String getItem_category_name() {
-		return item_category_name;
+	public String getItemCategoryName() {
+		return itemCategoryName;
 	}
-	public void setItem_category_name(String item_category_name) {
-		this.item_category_name = item_category_name;
+	public void setItemCategoryName(String itemCategoryName) {
+		this.itemCategoryName = itemCategoryName;
 	}
-
 }

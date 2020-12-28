@@ -16,9 +16,9 @@ import ao.app.productmaster.dao.DAO;
  * 
  */
 public class AdminDAO extends DAO {
-    private String ADMIN_ID_COLUMN_NAME = "admin_id";
-    private String PASSWORD_COLUMN_NAME = "password";
-    private String ADMIN_USER_TABLE_NAME = "admin_user";
+    private String ADMIN_ID_COLUMN_NAME = "ADMIN_ID";
+    private String PASSWORD_COLUMN_NAME = "PASSWORD";
+    private String ADMIN_USER_TABLE_NAME = "ADMIN_USER";
     public Admin selectByIdAndPassword (String adminId, String password)
         throws NamingException, SQLException {
         Admin admin = null;

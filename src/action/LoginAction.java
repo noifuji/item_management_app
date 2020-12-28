@@ -24,7 +24,7 @@ import ao.app.productmaster.action.Action;
 public class LoginAction extends Action {
 
     private String LOGIN_PAGE_NAME = "Login.jsp";
-    private String SEARCH_PAGE_NAME = "Search.jsp";
+    private String SEARCH_PAGE_NAME = "ProduceSearchView.action";
 
 	public String execute(
         HttpServletRequest request, HttpServletResponse response

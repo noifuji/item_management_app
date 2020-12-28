@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import ao.app.productmaster.action.Action;
 import ao.app.productmaster.action.LoginAction;
+import ao.app.productmaster.action.ProduceSearchViewAction;
+import ao.app.productmaster.action.ProduceItemDetailViewAction;
+import ao.app.productmaster.action.SearchAction;
+import ao.app.productmaster.action.ProduceAddItemViewAction;
+import ao.app.productmaster.action.ProduceAddItemConfirmViewAction;
+import ao.app.productmaster.action.AddItemAction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -38,14 +44,23 @@ public class FrontController extends HttpServlet {
             //actionに生成したインスタンスを格納する。
             Action action = null; //初期化
             
-            //ログイン機能
-            if (name.equals("LoginAction")) {
-                action = new LoginAction(); //new LoginAction()がnullを返却したらどうでしょう
-            }
-            /**商品検索機能
-            } else if (name == "Search") {
+            
+            if (name.equals("LoginAction")) {//ログイン機能
+                action = new LoginAction();
+            } else if (name.equals("ProduceSearchViewAction")) {
+                action = new ProduceSearchViewAction();
+            } else if (name.equals("SearchAction")) {//商品検索機能
                 action = new SearchAction();
-            //商品情報新規登録機能
+            } else if (name.equals("ProduceItemDetailViewAction")){
+                action = new ProduceItemDetailViewAction();
+            } else if (name.equals("ProduceAddItemViewAction")){
+                action = new ProduceAddItemViewAction();
+            } else if (name.equals("ProduceAddItemConfirmViewAction")){
+                action = new ProduceAddItemConfirmViewAction();
+            } else if (name.equals("AddItemAction")){
+                action = new AddItemAction();
+            }
+            /**商品情報新規登録機能
             } else if (name == "Create") {
                 action = new CreateAction();
             //商品情報登録変更機能

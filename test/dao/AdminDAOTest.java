@@ -35,7 +35,7 @@ public class AdminDAOTest {
             tmpIc.createSubcontext("java:comp/env/jdbc");
 
             final MysqlDataSource tempDs = new MysqlDataSource();
-            tempDs.setUrl("jdbc:mysql://localhost:3306/myapp");//このへんでデータベースの情報を設定しています。
+            tempDs.setUrl("jdbc:mysql://localhost:3306/myapptest");//このへんでデータベースの情報を設定しています。
             tempDs.setUser("root");
             tempDs.setPassword("secret");
             tmpIc.bind("java:comp/env/jdbc/myapp", tempDs);
