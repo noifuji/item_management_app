@@ -58,7 +58,7 @@ public class ItemDAOTest {
     private final String lastUpdateDateTime[] = {"2020/12/24 23:59:59", "2020/12/24 23:59:59", "2020/12/24 23:59:59"
     , "2020/12/24 23:59:59", "2020/12/24 23:59:59"}; 
     
-    //テストケース1：Itemテーブルに保存されている情報の一覧をList<Item> selectAll()で表示できることを確認する
+    //テストケース1：Itemテーブル���保存されている情報の一覧をList<Item> selectAll()で表示できることを確認する
     @Test
     public void testCase1() throws NamingException, SQLException {
         ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
@@ -66,12 +66,12 @@ public class ItemDAOTest {
         
         //assertEquals(想定される値, 実際に得られた値)
         //一致していればテストはパスし、一致しなければテストは失敗する。
-        for(int i = 0; i < itemList.size(); i++) {
-            assertEquals(itemNo[i], itemList.get(i).getItemNo());
+        for(int i = 0; i < itemNo.length; i++) {
+            assertEquals(itemNo[i], itemList.get(i).getItemNoInt());
             assertEquals(itemCategoryCode[i], itemList.get(i).getItemCategoryCode());
             assertEquals(itemName[i], itemList.get(i).getItemName());
             assertEquals(Explanation[i], itemList.get(i).getExplanation());
-            assertEquals(Price[i], itemList.get(i).getPrice());
+            assertEquals(Price[i], itemList.get(i).getPriceInt());
             assertEquals(recommendFlg[i], itemList.get(i).getRecommendFlg());
             String strDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(itemList.get(i).getLastUpdateDateTime());
             assertEquals(lastUpdateDateTime[i], strDate);
@@ -87,11 +87,11 @@ public class ItemDAOTest {
         List<Item> itemList  = dao.selectByItemCategoryCode(itemCategoryCode[0]); //メソッド実行
         
         int i = 0;
-        assertEquals(itemNo[0],  itemList.get(0).getItemNo());
+        assertEquals(itemNo[0],  itemList.get(0).getItemNoInt());
         assertEquals(itemCategoryCode[0], itemList.get(0).getItemCategoryCode());
         assertEquals(itemName[0], itemList.get(0).getItemName());
         assertEquals(Explanation[0], itemList.get(0).getExplanation());
-        assertEquals(Price[0], itemList.get(0).getPrice());
+        assertEquals(Price[0], itemList.get(0).getPriceInt());
         assertEquals(recommendFlg[0], itemList.get(i).getRecommendFlg());
         String strDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(itemList.get(0).getLastUpdateDateTime());
         assertEquals(lastUpdateDateTime[0], strDate);
@@ -115,11 +115,11 @@ public class ItemDAOTest {
         ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
         List<Item> itemList  = dao.selectByItemName("ローマ");
         
-        assertEquals(itemNo[1],             itemList.get(0).getItemNo());
+        assertEquals(itemNo[1],             itemList.get(0).getItemNoInt());
         assertEquals(itemCategoryCode[1],   itemList.get(0).getItemCategoryCode());
         assertEquals(itemName[1],           itemList.get(0).getItemName());
         assertEquals(Explanation[1],        itemList.get(0).getExplanation());
-        assertEquals(Price[1],              itemList.get(0).getPrice());
+        assertEquals(Price[1],              itemList.get(0).getPriceInt());
         assertEquals(recommendFlg[1],       itemList.get(0).getRecommendFlg());
         String strDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(itemList.get(0).getLastUpdateDateTime());
         assertEquals(lastUpdateDateTime[1], strDate);
@@ -140,11 +140,11 @@ public class ItemDAOTest {
         ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
         List<Item> itemList  = dao.selectByItemCategoryCodeAndItemName("002", "ローマ");
         
-        assertEquals(itemNo[1],             itemList.get(0).getItemNo());
+        assertEquals(itemNo[1],             itemList.get(0).getItemNoInt());
         assertEquals(itemCategoryCode[1],   itemList.get(0).getItemCategoryCode());
         assertEquals(itemName[1],           itemList.get(0).getItemName());
         assertEquals(Explanation[1],        itemList.get(0).getExplanation());
-        assertEquals(Price[1],              itemList.get(0).getPrice());
+        assertEquals(Price[1],              itemList.get(0).getPriceInt());
         assertEquals(recommendFlg[1],       itemList.get(0).getRecommendFlg());
         String strDate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(itemList.get(0).getLastUpdateDateTime());
         assertEquals(lastUpdateDateTime[1], strDate);
@@ -178,20 +178,81 @@ public class ItemDAOTest {
         assertEquals(null, item);
   }
   
-  //テストケース10:selectByItemNoで登録してないやつでNULLになる
+  //テストケース10:insertが成功する
   @Test
     public void testCase10() throws NamingException, SQLException {
         Item item = new Item();
         item.setItemName("あああ");
         item.setItemCategoryCode("001");
         item.setExplanation("ていてすいすは");
-        item.setPrice(10000000);
+        item.setPrice("10000000");
         item.setRecommendFlg("0");
         item.setLastUpdateDateTime(new Date());
         ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
         int line  = dao.insert(item);
         
         assertEquals(1, line);
+  }
+  
+  //テストケース11:updateが成功する。
+  @Test
+    public void testCase11() throws NamingException, SQLException {
+        Item item = new Item();
+        item.setItemName("あああ");
+        item.setItemCategoryCode("001");
+        item.setExplanation("ていてすいすは");
+        item.setPrice("10000000");
+        item.setRecommendFlg("0");
+        item.setLastUpdateDateTime(new Date());
+        ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
+        int line  = dao.insert(item);
+        
+        assertEquals(1, line);
+        
+        List<Item> items = dao.selectByItemCategoryCodeAndItemName("001", "あああ");
+        Item updateTarget = items.get(items.size()-1);
+        
+        item = new Item();
+        item.setItemNo(updateTarget.getItemNo());
+        item.setItemName("いいい");
+        item.setItemCategoryCode("001");
+        item.setExplanation("アップデート後");
+        item.setPrice("10000000");
+        item.setRecommendFlg("0");
+        item.setLastUpdateDateTime(new Date());
+        
+        line = dao.update(item);
+        
+        assertEquals(1, line);
+        
+        
+        
+  }
+  
+  //テストケース12:deleteが成功する。
+  @Test
+    public void testCase12() throws NamingException, SQLException {
+        Item item = new Item();
+        item.setItemName("あああ");
+        item.setItemCategoryCode("001");
+        item.setExplanation("ていてすいすは");
+        item.setPrice("10000000");
+        item.setRecommendFlg("0");
+        item.setLastUpdateDateTime(new Date());
+        ItemDAO dao = new ItemDAO();//テスト対象であるItemDAOクラスのインスタンスを生成
+        int line  = dao.insert(item);
+        
+        assertEquals(1, line);
+        
+        List<Item> items = dao.selectByItemCategoryCodeAndItemName("001", "あああ");
+        Item deleteTarget = items.get(items.size()-1);
+        
+        line = dao.deleteByItemNo(deleteTarget.getItemNoInt());
+        
+        assertEquals(1, line);
+        
+        
+        
   }
   
   

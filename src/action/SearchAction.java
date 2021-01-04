@@ -1,13 +1,19 @@
 package ao.app.productmaster.action;
 
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ao.app.productmaster.bean.Item;
+import ao.app.productmaster.bean.ItemCategory;
 import ao.app.productmaster.dao.ItemDAO;
+import ao.app.productmaster.dao.ItemCategoryDAO;
 import ao.app.productmaster.action.Action;
+import ao.app.productmaster.tool.ItemManagementException;
+import ao.app.productmaster.tool.Constants;
 
 /**
  * 検索された商品分類コード・商品名がProductテーブルに存在するかどうかチェックする
@@ -24,12 +30,20 @@ import ao.app.productmaster.action.Action;
 public class SearchAction extends Action {
 	public String execute(
 		HttpServletRequest request, HttpServletResponse response
-	) throws Exception {
+	) throws SQLException, NamingException, ItemManagementException {
 
-		HttpSession session=request.getSession();
-		String itemCategoryCode=request.getParameter("item_category_code"); //商品分類コードで選択された値を取得する
-		String itemName=request.getParameter("item_name");//商品名に入力された値を取得する
+		HttpSession session=request.getSession(false);
+            if(session == null) {
+                throw new ItemManagementException(Constants.ERROR_MESSAGE_401);
+            }
+		String itemCategoryCode=request.getParameter("entered_item_category_code"); //商品分類コードで選択された値を取得する
+		String itemName=request.getParameter("entered_item_name");//商品名に入力された値を取得する
+		session.setAttribute("entered_item_name", itemName);
+		session.setAttribute("entered_item_category_code", itemCategoryCode);
 		
+		ItemCategoryDAO itemCategoryDao = new ItemCategoryDAO();
+        List<ItemCategory> itemCategoryList = itemCategoryDao.selectAll();
+        request.setAttribute ("item_category_list", itemCategoryList);
 		
 		ItemDAO dao = new ItemDAO();
 		//itemsの定義だけここに移動する

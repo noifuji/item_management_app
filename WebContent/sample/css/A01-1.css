@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+body {
+width:980px;
+margin:0 auto;
+}
+
+.header {
+	height: 80px;
+}
+
+.page-title {
+	font-size: 40px;
+	float: left;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.header .right {
+	float: right;
+	position: relative;
+	top: 30px;
+}
+
+.submit_button {
+	border-radius: 5px;
+	padding: 10px;
+	width: 120px;
+	font-size: 15px
+}
+
 
 .top{
 	text-align: center;
@@ -7,66 +36,53 @@
 	padding: 30px;
 }
 
-h1 {
-	margin-left: 500px;
-}
-.second-head {
-	margin-left: 500px;
-}
-
-.login-form {
-	margin-left: 550px;
-	clear: both;
+.login_container {
+	width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.login {
-	border-radius: 5px;
-	margin-left: 100px;
-	padding: 15px;
+.login_form {
+	text-align: center;
+	
 }
 
-.error {
+.login_error {
 	color: red;
-	margin-left: 400px;
-	clear: both;
 }
 
-.header {
-	margin-bottom: 10px;
+
+.guide_message {
+	width:600px;
+	margin-left: auto;
+	margin-right:auto;
 }
 
-h1 {
-	font-size: 35px;
-	float: left;
-	padding-bottom: 20px;
-	margin-left: 350px;
-	margin-bottom: 10px;
+.error_message {
+	color: red;
+	width:600px;
+	margin-left: auto;
+	margin-right:auto;
 }
 
-.header .right {
-	float: right;
-	border-radius: 5px;
-	padding: 10px;
-	margin-right: 460px;
-	position: relative;
-	top: 30px;
-	width: 100px;
-}
 
 .main {
-	margin-top: 30px;
-	clear: both;
-	background-color: #FFCCCC;
-	padding: 40px;
-	border: 1px solid black;
-	margin-left: 300px;
-	margin-right: 300px;
+	margin-top: 10px;
 }
 
 .main .search-area {
-	margin-left: auto;
-	margin-right: auto;
+	background-color: #FFCCCC;
+	border: 1px solid black;
+	height:80px;
 }
+
+.search_form {
+	width: 900px;
+    margin-top: 20px;
+    margin-left: auto;
+}
+
+
 
 .main .first-table {
 	margin-left: auto;
@@ -81,12 +97,6 @@ h1 {
 	width: 200px;
 }
 
-.search-area {
-	display: flex;
-	align-items: center;
-	padding: 1px;
-}
-
 .search-area .category {
 	float: left;
 	margin-right: 40px;
@@ -96,26 +106,17 @@ h1 {
 
 .search-area .item {
 	float: left;
-	margin-right: 20px;
+	margin-right: 40px;
 	font-size: 20px;
 }
 
 .search {
 	float: left;
-	border-radius: 5px;
-	padding: 10px;
 	margin-left: 15px;
-	width: 100px;
 }
 
-h1 {
-	font-size: 40px;
-}
 
 .completion {
-	margin-left: 400px;
-	font-size: 25px;
-	clear: both;
 }
 
 .array {
@@ -127,7 +128,6 @@ h1 {
 .attention {
 	color: red;
 	font-size: 30px;
-	margin-left: 300px;
 }
 
 table {
@@ -171,55 +171,35 @@ th {
 	text-align: left;
 }
 
-.choice .back {
+.choice {
+	width: 600px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.choice .form_back {
 	float: left;
-	margin-left: 600px;
-	margin-right: 10px;;
-	margin-top: 20px;
-	font-size: 20px;
-	border-radius: 5px;
-	padding: 15px;
-	width: 100px;
+	padding : 10px;
 
 }
 
-.choice .modify {
-	float: left;
-	margin-right: 25px;
-	margin-top: 20px;
-	margin-left: 10px;
-	font-size: 20px;
-	border-radius: 5px;
-	padding: 15px;
-	width: 100px;
+.choice .form_modify {
+	float: right;
+	padding : 10px;
 }
 
-.choice .delete {
-	float: left;
-	margin-right: 40px;
-	margin-top: 20px;
-	margin-left: 5px;
-	font-size: 20px;
-	border-radius: 5px;
-	padding: 15px;
-	width: 100px
+.choice .form_delete {
+	float: right;
+	padding : 10px;
 }
 
 .confirmation {
-	clear: both;
-	margin-left: 450px;
 }
 
-.choice .register {
-	float: left;
-	margin-left: 50px;
-	margin-right: 40px;
-	margin-top: 20px;
-	font-size: 20px;
-	border-radius: 5px;
-	padding: 15px;
-	width: 100px;
-
+.choice .form_register {
+	float: right;
+	padding : 10px;
 }
 
 .new-table {

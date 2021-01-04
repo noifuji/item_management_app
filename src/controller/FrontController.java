@@ -10,6 +10,11 @@ import ao.app.productmaster.action.SearchAction;
 import ao.app.productmaster.action.ProduceAddItemViewAction;
 import ao.app.productmaster.action.ProduceAddItemConfirmViewAction;
 import ao.app.productmaster.action.AddItemAction;
+import ao.app.productmaster.action.ProduceUpdateItemViewAction;
+import ao.app.productmaster.action.ProduceUpdateItemConfirmViewAction;
+import ao.app.productmaster.action.UpdateItemAction;
+import ao.app.productmaster.action.ProduceDeleteItemConfirmViewAction;
+import ao.app.productmaster.action.DeleteItemAction;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -59,21 +64,19 @@ public class FrontController extends HttpServlet {
                 action = new ProduceAddItemConfirmViewAction();
             } else if (name.equals("AddItemAction")){
                 action = new AddItemAction();
+            } else if (name.equals("ProduceUpdateItemViewAction")){
+                action = new ProduceUpdateItemViewAction();
+            } else if (name.equals("ProduceUpdateItemConfirmViewAction")){
+                action = new ProduceUpdateItemConfirmViewAction();
+            } else if (name.equals("UpdateItemAction")){
+                action = new UpdateItemAction();
+            } else if (name.equals("ProduceDeleteItemConfirmViewAction")){
+                action = new ProduceDeleteItemConfirmViewAction();
+            } else if (name.equals("DeleteItemAction")){
+                action = new DeleteItemAction();
             }
-            /**商品情報新規登録機能
-            } else if (name == "Create") {
-                action = new CreateAction();
-            //商品情報登録変更機能
-            } else if (name == "Update") {
-                action = new UpdateAction();
-            //商品情報削除機能
-            } else if (name == "Delete") {
-                action = new DeleteACtion();
-            }
-            */
             
-            String url=action.execute(request, response); //actionがnullだった!
-            //仮説1:nameが"Login"ではない値だったので、actionに初期化時のnullが代入されたままだった。
+            String url=action.execute(request, response);
             request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(out);

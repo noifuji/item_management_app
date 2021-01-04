@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import ao.app.productmaster.bean.Item;
 import ao.app.productmaster.dao.ItemDAO;
 import ao.app.productmaster.action.Action;
+import ao.app.productmaster.tool.ItemManagementException;
+import ao.app.productmaster.tool.Constants;
 
 /**
  * ItemCategoryテーブルに登録されている商品分類コード・商品分類名の一覧を表示させる
@@ -20,19 +22,21 @@ import ao.app.productmaster.action.Action;
 public class AddItemAction extends Action {
     public String execute(
         HttpServletRequest request, HttpServletResponse response
-        ) throws SQLException, NamingException {
+        ) throws SQLException, NamingException, ItemManagementException{
             
-            Item item = new Item();
-            item.setItemName(request.getParameter("item_name"));
-            item.setItemCategoryCode(request.getParameter("item_category_code"));
-            item.setExplanation(request.getParameter("item_explanation"));
-            item.setPrice(Integer.parseInt(request.getParameter("item_price")));
-            item.setRecommendFlg(request.getParameter("item_recommend_flg"));
+            HttpSession session=request.getSession(false);
+            if(session == null) {
+                throw new ItemManagementException(Constants.ERROR_MESSAGE_401);
+            }
+            
+            Item item = (Item)session.getAttribute("add_item");
             item.setLastUpdateDateTime(new Date());
             
             ItemDAO dao = new ItemDAO();
             int line  = dao.insert(item);
+            
+            session.removeAttribute("add_item");
              
-             return "AddItemCompleted.jsp";
+            return "AddItemCompleted.jsp";
         }
 }

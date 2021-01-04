@@ -13,15 +13,17 @@
 
  <body>
  	<div class="header">
- 		<h1>商品情報詳細</h1>
+ 		<h1 class="page-title">商品情報詳細</h1>
 	</div>
 
-	<div>
+	<div class="main">
 	<% 
 	  Item item = (Item)request.getAttribute("item_detail");
 	  if (item != null) {
- 	        String price = String.format("%,d", item.getPrice());
- 	        String recommendFlg = item.getRecommendFlg().equals("1") ? "★" : "-";
+ 	        String price = String.format("%,d", item.getPriceInt());
+ 	        String recommendFlg = item.getRecommendFlg().equals("1") ? "おすすめ商品" : "通常商品";
+ 	        String explanation = item.getExplanation();
+            explanation = explanation.replaceAll("\\r\\n|\\n\\r|\\n|\r", "<br>");
 	%>
 	 <table class="stock">
 		<tr>
@@ -34,7 +36,7 @@
   		 <td class="left-side">商品名</td><td class="product-name"><%=item.getItemName()%></td>
 		</tr>
 		<tr>
-		 <td class="left-side">説明</td><td class="explanation"><%=item.getExplanation()%></td>
+		 <td class="left-side">説明</td><td class="explanation"><%=explanation%></td>
 		</tr>
 		<tr>
 		 <td class="left-side">価格</td><td class="price"><%=price%>円</td>
@@ -50,15 +52,28 @@
   </div>
 
   <div class="choice">
-  　<form method="post" action="ProduceSearchView.action">
-  　　<input class="back" type="submit" value="戻る">
+  　<form method="post" class="form_back" action="ProduceSearchView.action">
+  　　<input class="submit_button" type="submit" value="戻る">
   　</form>
-   <input class="modify" type="submit" value="変更">
-   <input class="delete" type="submit" value="削除">
+  　
+  　<form method="post" class="form_delete" action="ProduceDeleteItemConfirmView.action">
+      <input type="hidden" name="item_no" value="<%=item.getItemNo()%>">
+      <input type="hidden" name="item_category_code" value="<%=item.getItemCategoryCode()%>">
+      <input type="hidden" name="item_category_name" value="<%=item.getItemCategoryName()%>">
+      <input type="hidden" name="item_name" value="<%=item.getItemName()%>">
+      <input type="hidden" name="item_explanation" value="<%=item.getExplanation()%>">
+      <input type="hidden" name="item_price" value="<%=item.getPrice()%>">
+      <input type="hidden" name="item_recommend_flg" value="<%=item.getRecommendFlg()%>">
+      <input class="submit_button" type="submit" value="削除">
+    </form>
+    
+    
+  　<form method="post" class="form_modify" action="ProduceUpdateItemView.action">
+      <input type="hidden" name="item_no" value="<%=item.getItemNo()%>">
+      <input class="submit_button"  type="submit" value="変更">
+    </form>
+  　
   </div>
-
-
-<p><a href="A04-1.html">ここをクリックすると飛びます。</a></p>
 
  </body>
 </html>

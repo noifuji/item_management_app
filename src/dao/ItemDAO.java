@@ -72,11 +72,11 @@ import ao.app.productmaster.dao.DAO;
 	 		
 	 		while (rs.next()) {
 	 			Item item=new Item();
-	 			item.setItemNo(rs.getInt(ITEM_NO_COLUMN_NAME));
+	 			item.setItemNo(String.valueOf(rs.getInt(ITEM_NO_COLUMN_NAME)));
 	 			item.setItemCategoryCode(rs.getString(ITEM_CATEGORY_CODE_COLUMN_NAME));
 	 			item.setItemName(rs.getString(ITEM_NAME_COLUMN_NAME));
 	 			item.setExplanation(rs.getString(EXPLANATION_COLUMN_NAME));
-	 			item.setPrice(rs.getInt(PRICE_COLUMN_NAME));
+	 			item.setPrice(String.valueOf(rs.getInt(PRICE_COLUMN_NAME)));
 	 			item.setRecommendFlg(rs.getString(RECOMMEND_FLG_COLUMN_NAME));
 	 			item.setLastUpdateDateTime(rs.getTimestamp(LAST_UPDATE_DATE_TIME_COLUMN_NAME));
 	 			item.setItemCategoryName(rs.getString(ITEM_CATEGORY_NAME_COLUMN_NAME));
@@ -92,21 +92,6 @@ import ao.app.productmaster.dao.DAO;
 	 	List<Item> list = new ArrayList<>();
 	 	
 	 	Connection con = getConnection();
-	 	
-	 	/**
-	 	SELECT ITEM.ITEM_NO, 
-	 			ITEM.ITEM_CATEGORY_CODE, 
-	 			ITEM.ITEM_NAME, 
-	 			ITEM.EXPLANATION,
-	 			ITEM.PRICE, 
-	 			ITEM.RECOMMEND_FLG, 
-	 			ITEM.LAST_UPDATE_DATE_TIME,
-	 			ITEM_CATEGORY.ITEM_CATEGORY_NAME,
-	 			FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE
-	 			WHERE ITEM.ITEM_NAME LIKE "%YYY%"
-	 			
-	 			  "select * from " + ADMIN_USER_TABLE_NAME + " where " + ADMIN_ID_COLUMN_NAME + "=? and " + PASSWORD_COLUMN_NAME + "=?");
-	 	*/
 	 	
 	 	PreparedStatement st;
 	 	st=con.prepareStatement(
@@ -126,11 +111,11 @@ import ao.app.productmaster.dao.DAO;
 	 		
 	 		while (rs.next()) {
 				Item item=new Item();
-	 			item.setItemNo(rs.getInt(ITEM_NO_COLUMN_NAME));
+	 			item.setItemNo(String.valueOf(rs.getInt(ITEM_NO_COLUMN_NAME)));
 	 			item.setItemCategoryCode(rs.getString(ITEM_CATEGORY_CODE_COLUMN_NAME));
 	 			item.setItemName(rs.getString(ITEM_NAME_COLUMN_NAME));
 	 			item.setExplanation(rs.getString(EXPLANATION_COLUMN_NAME));
-	 			item.setPrice(rs.getInt(PRICE_COLUMN_NAME));
+	 			item.setPrice(String.valueOf(rs.getInt(PRICE_COLUMN_NAME)));
 	 			item.setRecommendFlg(rs.getString(RECOMMEND_FLG_COLUMN_NAME));
 	 			item.setLastUpdateDateTime(rs.getTimestamp(LAST_UPDATE_DATE_TIME_COLUMN_NAME));
 	 			item.setItemCategoryName(rs.getString(ITEM_CATEGORY_NAME_COLUMN_NAME));
@@ -178,11 +163,11 @@ import ao.app.productmaster.dao.DAO;
 	 		
 	 		while (rs.next()) {
 	 			Item item=new Item();
-	 			item.setItemNo(rs.getInt(ITEM_NO_COLUMN_NAME));
+	 			item.setItemNo(String.valueOf(rs.getInt(ITEM_NO_COLUMN_NAME)));
 	 			item.setItemCategoryCode(rs.getString(ITEM_CATEGORY_CODE_COLUMN_NAME));
 	 			item.setItemName(rs.getString(ITEM_NAME_COLUMN_NAME));
 	 			item.setExplanation(rs.getString(EXPLANATION_COLUMN_NAME));
-	 			item.setPrice(rs.getInt(PRICE_COLUMN_NAME));
+	 			item.setPrice(String.valueOf(rs.getInt(PRICE_COLUMN_NAME)));
 	 			item.setRecommendFlg(rs.getString(RECOMMEND_FLG_COLUMN_NAME));
 	 			item.setLastUpdateDateTime(rs.getTimestamp(LAST_UPDATE_DATE_TIME_COLUMN_NAME));
 	 			item.setItemCategoryName(rs.getString(ITEM_CATEGORY_NAME_COLUMN_NAME));
@@ -229,11 +214,11 @@ import ao.app.productmaster.dao.DAO;
 	 		
 	 		while (rs.next()) {
 	 			Item item=new Item();
-	 			item.setItemNo(rs.getInt(ITEM_NO_COLUMN_NAME));
+	 			item.setItemNo(String.valueOf(rs.getInt(ITEM_NO_COLUMN_NAME)));
 	 			item.setItemCategoryCode(rs.getString(ITEM_CATEGORY_CODE_COLUMN_NAME));
 	 			item.setItemName(rs.getString(ITEM_NAME_COLUMN_NAME));
 	 			item.setExplanation(rs.getString(EXPLANATION_COLUMN_NAME));
-	 			item.setPrice(rs.getInt(PRICE_COLUMN_NAME));
+	 			item.setPrice(String.valueOf(rs.getInt(PRICE_COLUMN_NAME)));
 	 			item.setRecommendFlg(rs.getString(RECOMMEND_FLG_COLUMN_NAME));
 	 			item.setLastUpdateDateTime(rs.getTimestamp(LAST_UPDATE_DATE_TIME_COLUMN_NAME));
 	 			item.setItemCategoryName(rs.getString(ITEM_CATEGORY_NAME_COLUMN_NAME));
@@ -268,11 +253,11 @@ import ao.app.productmaster.dao.DAO;
 	 	Item item = null;
 	 		while (rs.next()) {
 	 			item=new Item();
-	 			item.setItemNo(rs.getInt(ITEM_NO_COLUMN_NAME));
+	 			item.setItemNo(String.valueOf(rs.getInt(ITEM_NO_COLUMN_NAME)));
 	 			item.setItemCategoryCode(rs.getString(ITEM_CATEGORY_CODE_COLUMN_NAME));
 	 			item.setItemName(rs.getString(ITEM_NAME_COLUMN_NAME));
 	 			item.setExplanation(rs.getString(EXPLANATION_COLUMN_NAME));
-	 			item.setPrice(rs.getInt(PRICE_COLUMN_NAME));
+	 			item.setPrice(String.valueOf(rs.getInt(PRICE_COLUMN_NAME)));
 	 			item.setRecommendFlg(rs.getString(RECOMMEND_FLG_COLUMN_NAME));
 	 			item.setLastUpdateDateTime(rs.getTimestamp(LAST_UPDATE_DATE_TIME_COLUMN_NAME));
 	 			item.setItemCategoryName(rs.getString(ITEM_CATEGORY_NAME_COLUMN_NAME));
@@ -293,7 +278,7 @@ import ao.app.productmaster.dao.DAO;
 		st.setString(1, item.getItemCategoryCode());
 		st.setString(2, item.getItemName());
 		st.setString(3, item.getExplanation());
-		st.setInt(4, item.getPrice());
+		st.setInt(4, item.getPriceInt());
 		st.setString(5, item.getRecommendFlg());
 		st.setDate(6, new java.sql.Date(item.getLastUpdateDateTime().getTime()));
 		line = st.executeUpdate();
@@ -304,69 +289,45 @@ import ao.app.productmaster.dao.DAO;
 		return line;
 	}
 	
-	/**
-	public void update(Product product) throws Exception {
-		Connection con=null;
-		PreparedStatement st=null;
-		try {
-			con = getConnection();
-			st = con.prepareStatement("UPDATE item values(null, ?, ?, ?, ? ,? ,? ,?)");
-
-			st.setInt(1, product.getItem_no());
-			st.setString(2, String.valueOf(product.getItem_category_code()));
-			st.setString(3, product.getItem_name());
-			st.setString(4, product.getExplanation());
-			st.setInt(5, product.getPrice());
-			st.setString(6, String.valueOf(product.getRecommend_flg()));
-			st.setDate(7, (java.sql.Date) product.getLast_update_date_time());
-			st.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			st.close();
-			con.close();
-		}
-		return;
+	
+	public int update(Item item) throws NamingException, SQLException {
+		Connection con = getConnection();
+	 	PreparedStatement st;
+		int line=0;
+		String sql = "UPDATE ITEM SET " + 
+		  "ITEM_CATEGORY_CODE=?, " + 
+		  "ITEM_NAME=?, " +
+		  "EXPLANATION=?, " +
+		  "PRICE=?, " +
+		  "RECOMMEND_FLG=?, " +
+		  "LAST_UPDATE_DATE_TIME=? " +
+		  "WHERE ITEM_NO=?";
+		st = con.prepareStatement(sql);
+		st.setString(1, item.getItemCategoryCode());
+		st.setString(2, item.getItemName());
+		st.setString(3, item.getExplanation());
+		st.setInt(4, item.getPriceInt());
+		st.setString(5, item.getRecommendFlg());
+		st.setDate(6, new java.sql.Date(item.getLastUpdateDateTime().getTime()));
+		st.setInt(7, item.getItemNoInt());
+		line = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return line;
 	}
-
-	public void deleteOne (Product product) {
-		Connection con=null;
-        PreparedStatement st=null;
-        try {
-        	try {
-				con = getConnection();
-			} catch (Exception e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-        	st = con.prepareStatement("DELETE item values(null, ?, ?, ?, ? ,? ,? ,?)");
-
-		st.setInt(1, product.getItem_no());
-    	st.setString(2, String.valueOf(product.getItem_category_code()));
-        st.setString(3, product.getItem_name());
-        st.setString(4, product.getExplanation());
-        st.setInt(5, product.getPrice());
-        st.setString(6, String.valueOf(product.getRecommend_flg()));
-        st.setDate(7, (java.sql.Date)product.getLast_update_date_time());
-        st.executeUpdate();
-
-       } catch (SQLException e) {
-    	   e.printStackTrace();
-       } finally {
-    	   try {
-			st.close();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-    	   try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-       }
+	
+	public int deleteByItemNo (int itemNo) throws NamingException, SQLException  {
+		Connection con = getConnection();
+	 	PreparedStatement st;
+		int line=0;
+		String sql = "DELETE FROM ITEM WHERE ITEM_NO=?";
+		st = con.prepareStatement(sql);
+		st.setInt(1, itemNo);
+		line = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		return line;
 	}
-	*/
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import ao.app.productmaster.bean.Admin;
 import ao.app.productmaster.dao.AdminDAO;
 import ao.app.productmaster.action.Action;
+import ao.app.productmaster.tool.ItemManagementException;
+import ao.app.productmaster.tool.Constants;
 
 /**
  * ユーザー名とパスワードの組み合わせをチェックする
@@ -29,8 +31,6 @@ public class LoginAction extends Action {
 	public String execute(
         HttpServletRequest request, HttpServletResponse response
     ) throws Exception {
-
-        HttpSession session=request.getSession();
         String adminId=request.getParameter("admin_id"); //<input type="text" name="admin_id">に入力された値を取得する。
         String password=request.getParameter("password"); //input type="text" name="password">に入力された値を取得する。
 		
@@ -60,8 +60,7 @@ public class LoginAction extends Action {
         	return LOGIN_PAGE_NAME;
         }
         
-        
-        
+        HttpSession session=request.getSession(true);
         session.setAttribute("admin", admin);
 		
         return SEARCH_PAGE_NAME;

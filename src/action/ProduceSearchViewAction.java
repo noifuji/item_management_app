@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import ao.app.productmaster.bean.ItemCategory;
 import ao.app.productmaster.dao.ItemCategoryDAO;
 import ao.app.productmaster.action.Action;
+import ao.app.productmaster.tool.ItemManagementException;
+import ao.app.productmaster.tool.Constants;
 
 /**
  * ItemCategoryテーブルに登録されている商品分類コード・商品分類名の一覧を表示させる
@@ -19,16 +21,17 @@ import ao.app.productmaster.action.Action;
 public class ProduceSearchViewAction extends Action {
     public String execute(
         HttpServletRequest request, HttpServletResponse response
-        ) throws SQLException, NamingException {
+        ) throws SQLException, NamingException, ItemManagementException {
             
-             HttpSession session=request.getSession();
+             HttpSession session=request.getSession(false);
+            if(session == null) {
+                throw new ItemManagementException(Constants.ERROR_MESSAGE_401);
+            }
              
              ItemCategoryDAO dao = new ItemCategoryDAO();
-             List<ItemCategory> itemCategory = null;
+             List<ItemCategory> itemCategory = dao.selectAll();
              
-             itemCategory = dao.selectAll();
-             
-             session.setAttribute ("item_category_list", itemCategory);
+             request.setAttribute("item_category_list", itemCategory);
              
              return "Search.jsp";
         }

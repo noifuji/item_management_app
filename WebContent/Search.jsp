@@ -15,46 +15,57 @@
 
  <body>
  	<div class="header">
- 		<h1>商品情報検索</h1>
+ 		<h1 class="page-title">商品情報検索</h1>
 		<form action="ProduceAddItemView.action" method="post">
- 		  <input class="right" type="submit" value="新規商品追加">
+ 		  <input class="right submit_button" type="submit" value="新規商品追加">
  		</form>
 	</div>
 
 	<div class="main">
 		<div class="search-area">
-			<div class="clear"></div>
-			<form action="Search.action" name="search_form" method="post">
+			<form action="Search.action" class="search_form" name="search_form" method="post">
+			 <%
+			   String enteredItemCategoryCode = session.getAttribute("entered_item_category_code")== null ? "" : (String)session.getAttribute("entered_item_category_code");
+			   String enteredItemName = session.getAttribute("entered_item_name") == null ? "" : (String)session.getAttribute("entered_item_name");
+			 %>
  			 <div class="category">
  			   商品分類
- 			   <select class="pulldown" name="item_category_code">
+ 			   <select class="pulldown" name="entered_item_category_code">
  			     <option value=""></option>
- 			     <%//上記のように出力されるようにしたいのでここに、javaコードをうめこみます。
- 			         List<ItemCategory> itemCategories = (List)session.getAttribute("item_category_list");
- 			         for (int i =0; i < itemCategories.size(); i++) {%>
- 			             <option value="<%=itemCategories.get(i).getItemCategoryCode()%>"><%=itemCategories.get(i).getItemCategoryName()%></option>
+ 			     <%
+ 			         List<ItemCategory> itemCategories = (List)request.getAttribute("item_category_list");
+ 			         for (int i = 0; i < itemCategories.size(); i++) {%>
+ 			             <option value="<%=itemCategories.get(i).getItemCategoryCode()%>" 
+ 			             <%
+ 			              if(itemCategories.get(i).getItemCategoryCode().equals(enteredItemCategoryCode)) {
+ 			              %>
+ 			               <%="selected"%>
+ 			             <%}%>
+ 			             ><%=itemCategories.get(i).getItemCategoryName()%></option>
  			     <%    }%>
  			   </select>
  			 </div>
  			 <div class="item">
- 			   商品名 <input type="text" name="item_name">
+ 			   商品名 <input type="text" name="entered_item_name" value="<%=enteredItemName%>">
  			 </div>
- 			 <button class="search" type="submit" value="検索">検索</button>
+ 			 <button class="search submit_button" type="submit" value="検索">検索</button>
  	        </form>
 		</div>
 		<!--　検索結果を表示するようにかいてください -->
 		<!-- 検索ボタンをクリックしたあと、該当する商品情報を出力させる-->
-		
+		<%
+		  List<Item> items = (List)request.getAttribute("item_list");
+ 	      if(items != null && items.size() > 0) {
+		%>
 		<table class="first-table">
  		<tr>
  		 <th>No.</th><th>商品分類</th><th>商品名</th><th>価格</th><th>おすすめ</th>
  	    </tr>
  	    <!--　この部分を繰り返す -->
  	    <%
- 	      List<Item> items = (List)request.getAttribute("item_list");
- 	      if(items != null) {
+ 	      
  	        for (int i = 0; i < items.size(); i++) {
- 	        String price = String.format("%,d", items.get(i).getPrice());
+ 	        String price = String.format("%,d", items.get(i).getPriceInt());
  	        String recommendFlg = items.get(i).getRecommendFlg().equals("1") ? "★" : "-";
  	        
  	      %>
@@ -72,15 +83,21 @@
  	     </tr>
  	    <%
  	        }
- 	      }
  	    %>
  	 </table>
+ 	 <%
+ 	 } else {
+ 	 %>
  	 
  	 <p class="attention">
 		<% if(request.getAttribute("message") != null) { %>
 		<%= request.getAttribute("message") %>
 		<% } %>
 	 </p>
+	 
+	 <%
+	 }
+	 %>
  	</div>
 
  </body>

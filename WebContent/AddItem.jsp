@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="ao.app.productmaster.bean.ItemCategory" %>
+<%@ page import="ao.app.productmaster.bean.Item" %>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,50 +14,77 @@
 
   <body>
  	<div class="header">
- 		<h1>商品情報新規登録入力</h1>
+ 		<h1 class="page-title">商品情報新規登録入力</h1>
 	</div>
 	
+	<%
+	String itemName = "";
+ String itemCategoryCode = "";
+ String itemExplanation =  "";
+ String price = "";
+ String itemRecommendFlg = "";
 	
-	<div>
-      <form id="item_info" action="ProduceAddItemConfirmView.action" method="post">
-	  <table class="new-table">
+	if(session.getAttribute("add_item") != null) {
+	  Item addItem = (Item)session.getAttribute("add_item");
+	  itemName = addItem.getItemName() != null ? addItem.getItemName() : "";
+	  itemCategoryCode = addItem.getItemCategoryCode() != null ? addItem.getItemCategoryCode() : "";
+   itemExplanation =  addItem.getExplanation() != null ? addItem.getExplanation() : "";
+   price = addItem.getPrice() != null ? addItem.getPrice() : "";
+   itemRecommendFlg = addItem.getRecommendFlg().equals("1") ? "checked" : "";
+	}
+	%>
+	
+	<div class="error_message">
+      <% if(request.getAttribute("message") != null){ %>
+      <p>エラー</p>
+      <p>・<%= request.getAttribute("message") %></p>
+      <% } %>
+  </div>
+  
+	<div class="main">
+  <form id="item_info" action="ProduceAddItemConfirmView.action" method="post">
+	 <table class="new-table">
 		<tr>
 		 <td class="left-side">商品分類<span>※必須</span></td><td class="right-side">
 		   <select class="pulldown" name="item_category_code">
  			   <option value=""></option>
  			   <%
- 			         List<ItemCategory> itemCategories = (List)session.getAttribute("item_category_list");
+ 			         List<ItemCategory> itemCategories = (List)request.getAttribute("item_category_list");
  			         for (int i =0; i < itemCategories.size(); i++) {%>
- 			             <option value="<%=itemCategories.get(i).getItemCategoryCode()%>"><%=itemCategories.get(i).getItemCategoryName()%></option>
+ 			             <option value="<%=itemCategories.get(i).getItemCategoryCode()%>" 
+ 			             <%
+ 			             if (itemCategories.get(i).getItemCategoryCode().equals(itemCategoryCode)) {
+ 			             %>
+ 			               <%="selected"%>
+ 			             <%}%>
+ 			             ><%=itemCategories.get(i).getItemCategoryName()%></option>
  			   <%    }%>
  		  </select>
 		 </td>
 		</tr>
 		<tr>
-  		 <td class="left-side">商品名<span>※必須</span></td><td class="right-side"><input class="goods"  name="item_name" type="text"></td>
+  		 <td class="left-side">商品名<span>※必須</span></td><td class="right-side"><input class="goods"  name="item_name" type="text" value="<%=itemName%>"></td>
 		</tr>
 		<tr>
-		 <td class="left-side">説明<span>※必須</span></td><td class="right-side"><textarea rows="10"  name="item_explanation" cols="60"></textarea></td>
+		 <td class="left-side">説明<span>※必須</span></td><td class="right-side"><textarea rows="10"  name="item_explanation" cols="60"><%=itemExplanation%></textarea></td>
 		</tr>
 		<tr>
-		 <td class="left-side">価格<span>※必須</span></td><td class="right-side"><input class="price" name ="item_price" type="text">円</td>
+		 <td class="left-side">価格<span>※必須</span></td><td class="right-side"><input class="price" name ="item_price" type="text" value="<%=price%>">円</td>
 		</tr>
 		<tr>
-		 <td class="left-side">おすすめ</td><td class="right-side"><input class="recommend" type="checkbox" name="item_recommend_flg" value="1">おすすめ商品にする</td>
+		 <td class="left-side">おすすめ</td><td class="right-side"><input class="recommend" type="checkbox" name="item_recommend_flg" value="1" <%=itemRecommendFlg%>>おすすめ商品にする</td>
 		</tr>
 	</table>
 	</form>
   </div>
 
   <div class="choice">
-   <form action="ProduceSearchView.action" method="post">
-    <input class="back" type="submit" value="戻る">
+   <form action="ProduceSearchView.action" class="form_back" method="post">
+    <input class="back submit_button" type="submit" value="戻る">
    </form>
-   <input class="register" type="submit" form="item_info" value="確認">
+   <div class="form_register">
+    <input class="submit_button" type="submit" form="item_info" value="確認">
+   </div>
   </div>
-  
-  <div class="error-registration">
-	<p>エラー</p>
-	<p>・XXXXを入力してください。</p>
-	<p>・XXXXを入力してください。</p>
-    </div>
+  </body>
+</html>

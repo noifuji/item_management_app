@@ -15,13 +15,17 @@
 
  <body>
  	<div class="header">
- 		<h1>商品情報削除完了</h1>
+ 		<h1 class="page-title">商品情報削除完了</h1>
  	</div>
-
- 	<div class="completion">商品情報の登録が完了しました。</div>
  	
-  <form action="ProduceSearchView.action" method="post">
- 	  <input class="to-array" type="submit" value="一覧へ">
- 	</form>
+ 	<div class="guide_message">
+ 	  <div class="completion">商品情報の登録が完了しました。</div>
+ 	</div>
+ 	
+ 	<div class="choice">
+    <form action="ProduceSearchView.action" method="post">
+ 	    <input class="submit_button" type="submit" value="一覧へ">
+ 	  </form>
+ 	</div>
 	</body>
 </html>

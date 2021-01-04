@@ -12,13 +12,25 @@
   <title>商品情報変更完了画面</title>
   <link rel="stylesheet" href="css/A01-1.css">
  </head>
+ 
+ <%
+   Item item = (Item)request.getAttribute("update_item");
+ %>
 
  <body>
- 	<h1 class=>商品情報変更完了</h1>
- 	<div class="completion">商品情報の変更が完了しました。</div>
- 	<input class="to-array" type="submit" value="詳細へ">
-
-
-		<p><a href="A10.html">ここをクリックすると飛びます。</a></p>
+   <div class="header">
+ 	   <h1  class="page-title">商品情報変更完了</h1>
+ 	 </div>
+ 	 
+ 	 <div class="guide_message">
+ 	   <div class="completion">商品情報の変更が完了しました。</div>
+ 	 </div>
+ 	 
+ 	 <div class="choice">
+ 	   <form action="ProduceItemDetailView.action" method="post">
+ 	     <input type="hidden" name="item_no" value="<%=item.getItemNoInt()%>">
+ 	     <input class="submit_button" type="submit" value="詳細へ">
+ 	   </form>
+ 	 </div> 
 	</body>
 </html>
