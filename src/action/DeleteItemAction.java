@@ -33,6 +33,6 @@ public class DeleteItemAction extends Action {
             ItemDAO dao = new ItemDAO();
             int line  = dao.deleteByItemNo(Integer.parseInt(item_no));
              
-             return "DeleteItemCompleted.jsp";
+             return Constants.PATH_DELETEITEMCOMPLETED_JSP;
         }
 }

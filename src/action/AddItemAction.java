@@ -37,6 +37,6 @@ public class AddItemAction extends Action {
             
             session.removeAttribute("add_item");
              
-            return "AddItemCompleted.jsp";
+            return Constants.PATH_ADDITEMCOMPLETED_JSP;
         }
 }

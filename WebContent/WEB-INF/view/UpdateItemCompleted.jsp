@@ -8,7 +8,7 @@
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="content-Style-Type" content="text/css" />
-  <link href="/ItemManagement/sample/css/A01-1.css" rel="stylesheet" type="text/css" />
+  <link href="/ItemManagement/css/A01-1.css" rel="stylesheet" type="text/css" />
   <title>商品情報変更完了画面</title>
   <link rel="stylesheet" href="css/A01-1.css">
  </head>

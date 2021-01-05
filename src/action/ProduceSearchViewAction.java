@@ -33,6 +33,6 @@ public class ProduceSearchViewAction extends Action {
              
              request.setAttribute("item_category_list", itemCategory);
              
-             return "Search.jsp";
+             return Constants.PATH_SEARCH_JSP;
         }
 }

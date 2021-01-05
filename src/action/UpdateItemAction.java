@@ -38,6 +38,6 @@ public class UpdateItemAction extends Action {
             
             request.setAttribute("update_item", item);
              
-             return "UpdateItemCompleted.jsp";
+             return Constants.PATH_UPDATEITEMCOMPLETED_JSP;
         }
 }

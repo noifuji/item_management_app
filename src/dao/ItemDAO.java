@@ -37,21 +37,6 @@ import ao.app.productmaster.dao.DAO;
 
 	 	Connection con = getConnection();
 	 	
-	 	/**
-	 	SELECT ITEM.ITEM_NO, 
-	 			ITEM.ITEM_CATEGORY_CODE, 
-	 			ITEM.ITEM_NAME, 
-	 			ITEM.EXPLANATION,
-	 			ITEM.PRICE, 
-	 			ITEM.RECOMMEND_FLG, 
-	 			ITEM.LAST_UPDATE_DATE_TIME,
-	 			ITEM_CATEGORY.ITEM_CATEGORY_NAME,
-	 			FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE
-	 			WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = "XXX" AND ITEM.ITEM_NAME LIKE "%YYY%"
-	 			
-	 			  "select * from " + ADMIN_USER_TABLE_NAME + " where " + ADMIN_ID_COLUMN_NAME + "=? and " + PASSWORD_COLUMN_NAME + "=?");
-	 	*/
-	 	
 	 	PreparedStatement st;
 	 	st=con.prepareStatement(
 	 		"SELECT ITEM.ITEM_NO AS ITEM_NO, "+
@@ -63,7 +48,8 @@ import ao.app.productmaster.dao.DAO;
 	 		"ITEM.LAST_UPDATE_DATE_TIME AS LAST_UPDATE_DATE_TIME," +
 	 		"ITEM_CATEGORY.ITEM_CATEGORY_NAME AS ITEM_CATEGORY_NAME " + 
 	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE "+
-	 		"WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = ? AND ITEM.ITEM_NAME LIKE ?");
+	 		"WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = ? AND ITEM.ITEM_NAME LIKE ? " +
+	 		"ORDER BY ITEM.ITEM_NO");
 	 		
 	 		st.setString(1, itemCategoryCode);
 	 		st.setString(2, "%" + itemName + "%");
@@ -104,7 +90,8 @@ import ao.app.productmaster.dao.DAO;
 	 		"ITEM.LAST_UPDATE_DATE_TIME AS LAST_UPDATE_DATE_TIME," +
 	 		"ITEM_CATEGORY.ITEM_CATEGORY_NAME AS ITEM_CATEGORY_NAME " + 
 	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE "+
-	 		"WHERE ITEM.ITEM_NAME LIKE ?");
+	 		"WHERE ITEM.ITEM_NAME LIKE ? " +
+	 		"ORDER BY ITEM.ITEM_NO");
 	 		
 	 		st.setString(1, "%" + itemName + "%");
 	 		ResultSet rs=st.executeQuery();
@@ -131,19 +118,6 @@ import ao.app.productmaster.dao.DAO;
 	 	List<Item> list = new ArrayList<>();
 	 	
 	 	Connection con = getConnection();
-	 	
-	 	/**
-	 	 * 	SELECT ITEM.ITEM_NO, 
-	 			ITEM.ITEM_CATEGORY_CODE, 
-	 			ITEM.ITEM_NAME, 
-	 			ITEM.EXPLANATION,
-	 			ITEM.PRICE, 
-	 			ITEM.RECOMMEND_FLG, 
-	 			ITEM.LAST_UPDATE_DATE_TIME,
-	 			ITEM_CATEGORY.ITEM_CATEGORY_NAME,
-	 			FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE
-	 			WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = "XXX"
-	 			*/
 	 			
 	 	PreparedStatement st;
 	 	st=con.prepareStatement(
@@ -156,7 +130,8 @@ import ao.app.productmaster.dao.DAO;
 	 		"ITEM.LAST_UPDATE_DATE_TIME AS LAST_UPDATE_DATE_TIME," +
 	 		"ITEM_CATEGORY.ITEM_CATEGORY_NAME AS ITEM_CATEGORY_NAME " + 
 	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE "+
-	 		"WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = ?");
+	 		"WHERE ITEM_CATEGORY.ITEM_CATEGORY_CODE = ? " +
+	 		"ORDER BY ITEM.ITEM_NO");
 	 		
 	 		st.setString(1, itemCategoryCode);
 	 		ResultSet rs=st.executeQuery();
@@ -184,18 +159,6 @@ import ao.app.productmaster.dao.DAO;
 	 	
 	 	Connection con = getConnection();
 	 	
-	 	 /**
-	 	 * 	SELECT ITEM.ITEM_NO, 
-	 			ITEM.ITEM_CATEGORY_CODE, 
-	 			ITEM.ITEM_NAME, 
-	 			ITEM.EXPLANATION,
-	 			ITEM.PRICE, 
-	 			ITEM.RECOMMEND_FLG, 
-	 			ITEM.LAST_UPDATE_DATE_TIME,
-	 			ITEM_CATEGORY.ITEM_CATEGORY_NAME,
-	 			FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE 
-	 			*/
-	 	
 	 	PreparedStatement st;
 	 	st=con.prepareStatement(
 	 		"SELECT ITEM.ITEM_NO AS ITEM_NO, "+
@@ -206,7 +169,8 @@ import ao.app.productmaster.dao.DAO;
 	 		"ITEM.RECOMMEND_FLG AS RECOMMEND_FLG, "+
 	 		"ITEM.LAST_UPDATE_DATE_TIME AS LAST_UPDATE_DATE_TIME," +
 	 		"ITEM_CATEGORY.ITEM_CATEGORY_NAME AS ITEM_CATEGORY_NAME " + 
-	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE");
+	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE " +
+	 		"ORDER BY ITEM.ITEM_NO");
 	 		
 	 		
 	 		
@@ -244,7 +208,8 @@ import ao.app.productmaster.dao.DAO;
 	 		"ITEM.LAST_UPDATE_DATE_TIME AS LAST_UPDATE_DATE_TIME," +
 	 		"ITEM_CATEGORY.ITEM_CATEGORY_NAME AS ITEM_CATEGORY_NAME " + 
 	 		"FROM ITEM JOIN ITEM_CATEGORY ON ITEM.ITEM_CATEGORY_CODE = ITEM_CATEGORY.ITEM_CATEGORY_CODE " +
-	 		"WHERE ITEM.ITEM_NO = ?");
+	 		"WHERE ITEM.ITEM_NO = ? " +
+	 		"ORDER BY ITEM.ITEM_NO");
 	 	
 	 	st.setInt(1, itemNo);
 	 	System.out.println(st.toString());
@@ -280,7 +245,7 @@ import ao.app.productmaster.dao.DAO;
 		st.setString(3, item.getExplanation());
 		st.setInt(4, item.getPriceInt());
 		st.setString(5, item.getRecommendFlg());
-		st.setDate(6, new java.sql.Date(item.getLastUpdateDateTime().getTime()));
+		st.setTimestamp(6, new java.sql.Timestamp(item.getLastUpdateDateTime().getTime()));
 		line = st.executeUpdate();
 		
 		
@@ -308,7 +273,7 @@ import ao.app.productmaster.dao.DAO;
 		st.setString(3, item.getExplanation());
 		st.setInt(4, item.getPriceInt());
 		st.setString(5, item.getRecommendFlg());
-		st.setDate(6, new java.sql.Date(item.getLastUpdateDateTime().getTime()));
+		st.setTimestamp(6, new java.sql.Timestamp(item.getLastUpdateDateTime().getTime()));
 		st.setInt(7, item.getItemNoInt());
 		line = st.executeUpdate();
 		

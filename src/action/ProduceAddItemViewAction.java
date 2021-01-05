@@ -34,6 +34,6 @@ public class ProduceAddItemViewAction extends Action {
              
             request.setAttribute("item_category_list", itemCategory);
              
-             return "AddItem.jsp";
+             return Constants.PATH_ADDITEM_JSP;
         }
 }

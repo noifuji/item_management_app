@@ -6,7 +6,7 @@
 <html lang="ja">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link href="/ItemManagement/sample/css/A01-1.css" rel="stylesheet" type="text/css" />
+  <link href="/ItemManagement/css/A01-1.css" rel="stylesheet" type="text/css" />
   <title>商品情報変更入力画面</title>
  </head>
 
@@ -49,7 +49,7 @@
             <input type="hidden" name="item_no" value="<%=itemNo%>">
 		  </tr>
 		  <tr>
-		    <td class="left-side">商品分類<span>※必須</span></td><td class="right-side">
+		    <td class="left-side">商品分類<span class="mandatory_text">※必須</span></td><td class="right-side">
 		      <select class="pulldown" name="item_category_code">
  			    <option value=""></option>
  			    <%
@@ -68,13 +68,13 @@
 		    </td>
 		  </tr>
 		  <tr>
-  		    <td class="left-side">商品名<span>※必須</span></td><td class="right-side"><input class="goods" type="text" name="item_name" value="<%=itemName%>"></td>
+  		    <td class="left-side">商品名<span class="mandatory_text">※必須</span></td><td class="right-side"><input class="goods" type="text" name="item_name" value="<%=itemName%>"></td>
 		  </tr>
 		  <tr>
-		    <td class="left-side">説明<span>※必須</span></td><td class="right-side"><textarea rows="10" cols="60" name="item_explanation"><%=itemExplanation%></textarea></td>
+		    <td class="left-side">説明<span class="mandatory_text">※必須</span></td><td class="right-side"><textarea rows="10" cols="60" name="item_explanation"><%=itemExplanation%></textarea></td>
 		  </tr>
 		  <tr>
-		    <td class="left-side">価格<span>※必須</span></td><td class="right-side"><input class="price" type="text" name="item_price" value="<%=price%>">円</td>
+		    <td class="left-side">価格<span class="mandatory_text">※必須</span></td><td class="right-side"><input class="price" type="text" name="item_price" value="<%=price%>">円</td>
 		  </tr>
 		  <tr>
 		    <td class="left-side">おすすめ</td><td class="right-side"><input class="recommend" name="item_recommend_flg" type="checkbox" value="1" <%=itemRecommendFlg%>>おすすめ商品にする</td>

@@ -22,8 +22,8 @@ import ao.app.productmaster.tool.Constants;
  * 
  */
 public class ProduceUpdateItemConfirmViewAction extends Action {
-    private String ERROR_PAGE_NAME = "UpdateItem.jsp";
-    private String NEXT_PAGE_NAME = "UpdateItemConfirm.jsp";
+    private String ERROR_PAGE_NAME = Constants.PATH_UPDATEITEM_JSP;
+    private String NEXT_PAGE_NAME = Constants.PATH_UPDATEITEMCONFIRM_JSP;
     
     public String execute(
         HttpServletRequest request, HttpServletResponse response

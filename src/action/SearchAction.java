@@ -65,12 +65,12 @@ public class SearchAction extends Action {
 		
 		if(items.size() == 0) {
 			request.setAttribute("message", "検索条件に該当する商品がありません。");
-			return "Search.jsp";
+			return Constants.PATH_SEARCH_JSP;
 		}
 			
 		
 		request.setAttribute("item_list", items);
 		
-		return "Search.jsp"; 
+		return Constants.PATH_SEARCH_JSP; 
    }
 }

@@ -15,6 +15,7 @@ import ao.app.productmaster.action.ProduceUpdateItemConfirmViewAction;
 import ao.app.productmaster.action.UpdateItemAction;
 import ao.app.productmaster.action.ProduceDeleteItemConfirmViewAction;
 import ao.app.productmaster.action.DeleteItemAction;
+import ao.app.productmaster.tool.Constants;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -87,7 +88,7 @@ public class FrontController extends HttpServlet {
     	HttpServletRequest request, HttpServletResponse response
     ) throws ServletException, IOException {
     	ServletContext context = getServletContext();
-    	RequestDispatcher dispatcher = context.getRequestDispatcher("/Login.jsp");
+    	RequestDispatcher dispatcher = context.getRequestDispatcher(Constants.PATH_LOGIN_JSP);
     	dispatcher.forward(request, response);
 
     }

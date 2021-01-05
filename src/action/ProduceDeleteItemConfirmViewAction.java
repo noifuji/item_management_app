@@ -43,6 +43,6 @@ public class ProduceDeleteItemConfirmViewAction extends Action {
             
             request.setAttribute("delete_item", item);
              
-             return "DeleteItemConfirm.jsp";
+             return Constants.PATH_DELETEITEMCONFIRM_JSP;
         }
 }

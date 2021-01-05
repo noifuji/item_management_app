@@ -1,5 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.TimeZone" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="ao.app.productmaster.bean.Item" %>
 
 <!DOCTYPE html>
@@ -7,7 +10,7 @@
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="content-Style-Type" content="text/css" />
-  <link href="/ItemManagement/sample/css/A01-1.css" rel="stylesheet" type="text/css" />
+  <link href="/ItemManagement/css/A01-1.css" rel="stylesheet" type="text/css" />
   <title>商品情報詳細画面</title>
  </head>
 
@@ -24,6 +27,11 @@
  	        String recommendFlg = item.getRecommendFlg().equals("1") ? "おすすめ商品" : "通常商品";
  	        String explanation = item.getExplanation();
             explanation = explanation.replaceAll("\\r\\n|\\n\\r|\\n|\r", "<br>");
+            
+            TimeZone timeZoneJP = TimeZone.getTimeZone("Asia/Tokyo");
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            fmt.setTimeZone(timeZoneJP);
+            String lastUpdateDateTime = fmt.format(item.getLastUpdateDateTime());
 	%>
 	 <table class="stock">
 		<tr>
@@ -45,7 +53,7 @@
 		 <td class="left-side">おすすめ</td><td><%=recommendFlg%></td>
 		</tr>
 		<tr>
-		 <td class="left-side">最終更新日時</td><td><%=item.getLastUpdateDateTime()%></td>
+		 <td class="left-side">最終更新日時</td><td><%=lastUpdateDateTime%></td>
 		</tr>
 	</table>
 	<% } %>

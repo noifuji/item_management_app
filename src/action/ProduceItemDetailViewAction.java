@@ -34,6 +34,6 @@ public class ProduceItemDetailViewAction extends Action {
              
              request.setAttribute ("item_detail", item);
              
-             return "ItemDetail.jsp";
+             return Constants.PATH_ITEMDETAIL_JSP;
         }
 }

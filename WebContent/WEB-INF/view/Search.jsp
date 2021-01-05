@@ -8,8 +8,7 @@
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="content-Style-Type" content="text/css" />
-  <link href="/ItemManagement/sample/css/A01-1.css" rel="stylesheet" type="text/css" />
-  <!-- href="/ItemManagement/sample/css/A01-1.css"-->
+  <link href="/ItemManagement/css/A01-1.css" rel="stylesheet" type="text/css" />
   <title>商品情報検索画面</title>
  </head>
 
@@ -57,7 +56,7 @@
 		  List<Item> items = (List)request.getAttribute("item_list");
  	      if(items != null && items.size() > 0) {
 		%>
-		<table class="first-table">
+		<table class="search_result_table">
  		<tr>
  		 <th>No.</th><th>商品分類</th><th>商品名</th><th>価格</th><th>おすすめ</th>
  	    </tr>

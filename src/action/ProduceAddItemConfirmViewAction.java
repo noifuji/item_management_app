@@ -23,8 +23,8 @@ import ao.app.productmaster.tool.ItemManagementException;
  */
 public class ProduceAddItemConfirmViewAction extends Action {
     
-    private String ERROR_PAGE_NAME = "AddItem.jsp";
-    private String NEXT_PAGE_NAME = "AddItemConfirm.jsp";
+    private String ERROR_PAGE_NAME = Constants.PATH_ADDITEM_JSP;
+    private String NEXT_PAGE_NAME = Constants.PATH_ADDITEMCONFIRM_JSP;
     
     
     public String execute(

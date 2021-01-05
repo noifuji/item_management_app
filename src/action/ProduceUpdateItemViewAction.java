@@ -43,6 +43,6 @@ public class ProduceUpdateItemViewAction extends Action {
              
              request.setAttribute("item_category_list", itemCategoryList);
              
-             return "UpdateItem.jsp";
+             return Constants.PATH_UPDATEITEM_JSP;
         }
 }
