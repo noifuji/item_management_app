@@ -58,7 +58,7 @@
 		%>
 		<table class="search_result_table">
  		<tr>
- 		 <th>No.</th><th>商品分類</th><th>商品名</th><th>価格</th><th>おすすめ</th>
+ 		 <th width="100px">No.</th><th width="200px">商品分類</th><th width="300px">商品名</th><th width="150px">価格</th><th width="150px">おすすめ</th>
  	    </tr>
  	    <!--　この部分を繰り返す -->
  	    <%
